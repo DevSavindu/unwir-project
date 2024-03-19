@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { RiPencilLine, RiDeleteBinLine } from 'react-icons/ri'; // Import icons from react-icons
+import backgroundImage from '../assets/9794.jpg'
+
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -39,9 +41,9 @@ const Users = () => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-white">
-      <div className="w-3/4 bg-gray-400 rounded p-6 shadow-lg  bg-opacity-50 backdrop-blur-lg">
-        <Link to="/create" className="bg-gray-600 text-white py-2 px-3 rounded mb-4 inline-block hover:bg-gray-600 duration-300">
+    <div className="flex justify-center items-center min-h-screen bg-white" style={{ backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+      <div className="w-3/4 bg-gray-400 rounded p-6 shadow-lg  bg-opacity-50  hover:bg-blue-100 duration-1000 backdrop-blur-lg">
+        <Link to="/create" className="bg-gray-600 text-white py-2 px-3 rounded mb-4 inline-block hover:bg-blue-300 duration-300">
           <button>+ Add User</button>
         </Link>
         <div className="overflow-x-auto">
