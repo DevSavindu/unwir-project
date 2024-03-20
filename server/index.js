@@ -7,7 +7,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/crud"); 
+// Replace this connection string with your MongoDB Atlas connection string
+const atlasUri = 'mongodb+srv://unwiradmin:admin123@admin.vr2khro.mongodb.net/';
+mongoose.connect(atlasUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 
@@ -16,7 +18,7 @@ db.on('error', (error) => {
 });
 
 db.once('open', () => {
-  console.log('Connected to MongoDB');
+  console.log('Connected to MongoDB Atlas');
 });
 
 app.get("/users", (req, res) => {
@@ -46,7 +48,7 @@ app.put('/updateUser/:id', (req, res) =>{
 app.delete('/deleteUser/:id', (req, res) =>{
   const id = req.params.id;
   UserModel.findByIdAndDelete({_id:id })
-  .then(res => res.json(res))
+  .then(response => res.json(response))
   .catch(err => res.json(err));
 });
 
