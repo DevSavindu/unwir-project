@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { RiPencilLine, RiDeleteBinLine } from 'react-icons/ri'; // Import icons from react-icons
-import backgroundImage from '../assets/9794.jpg'
-
+import { RiPencilLine, RiDeleteBinLine } from 'react-icons/ri';
+import backgroundImage from '../assets/9794.jpg';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -13,11 +12,12 @@ const Users = () => {
   useEffect(() => {
     axios.get("http://localhost:3001/users")
       .then((result) => {
-        setUsers(result.data);
+        setUsers(result.data); // Assuming result.data is an array of users
         setLoading(false);
       })
       .catch((err) => {
-        setError(err.message);
+        console.error("Error fetching users:", err);
+        setError("Failed to fetch users. Please try again later.");
         setLoading(false);
       });
   }, []);
@@ -28,7 +28,8 @@ const Users = () => {
         setUsers(users.filter(user => user._id !== id));
       })
       .catch((err) => {
-        setError(err.message);
+        console.error("Error deleting user:", err);
+        setError("Failed to delete user. Please try again later.");
       });
   };
 
@@ -79,13 +80,13 @@ const Users = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap flex items-center gap-6">
                       <Link to={`/update/${user._id}`} className="text-blue-600 hover:text-blue-900 mr-2 hover:scale-105 duration-300">
-                        <RiPencilLine /> {/* React Icon for update */}
+                        <RiPencilLine />
                       </Link>
                       <button
                         className="text-red-600 hover:text-red-900 hover:scale-105 duration-300"
                         onClick={() => handleDelete(user._id)}
                       >
-                        <RiDeleteBinLine /> {/* React Icon for delete */}
+                        <RiDeleteBinLine />
                       </button>
                     </td>
                   </tr>
