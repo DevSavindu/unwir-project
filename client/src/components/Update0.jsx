@@ -13,7 +13,7 @@ const UpdateUser = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/getUser/${id}`)
+    axios.get(`http://localhost:8082/getUser/${id}`)
       .then((result) => {
         const userData = result.data;
         setName(userData.name);
@@ -26,7 +26,7 @@ const UpdateUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3001/updateUser/${id}`, { name, email, age });
+      await axios.put(`http://localhost:8082/updateUser/${id}`, { name, email, age });
       navigate('/users');
     } catch (err) {
       console.error(err);
@@ -90,6 +90,7 @@ const UpdateUser = () => {
               label="Age"
               variant="standard"
               value={age}
+              type='number'
               onChange={(e) => setAge(e.target.value)}
             />
           </Box>
