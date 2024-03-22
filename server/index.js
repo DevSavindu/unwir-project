@@ -8,8 +8,6 @@ app.use(cors());
 app.use(express.json());
 
 // Replace this connection string with your MongoDB Atlas connection string
-const atlasUri = 'mongodb+srv://unwiradmin:admin123@admin.vr2khro.mongodb.net/';
-mongoose.connect(atlasUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 
