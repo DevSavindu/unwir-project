@@ -1,5 +1,5 @@
 
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import UpdateUser from './components/Update0'
@@ -14,6 +14,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
+        <Route path="/" element={<Navigate to="/users" />} />
           <Route path='/users' element={<Users/>}></Route>
           <Route path='/create' element={<CreateUser/>}></Route>
           <Route path='/update/:id' element={<UpdateUser/>}></Route>
